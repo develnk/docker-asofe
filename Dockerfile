@@ -18,7 +18,8 @@ RUN cd /usr/src \
     && git checkout $ASOFE_COMMIT \
     && ./zcutil/build.sh -j4 \
     && cd /usr/src/asofe/src \
-    && /usr/bin/install -c asofe-tx asofed asofe-cli asofe-gtest -t /usr/local/bin/ \
+    && gcc blocknotify.c -o blocknotify \
+    && /usr/bin/install -c asofe-tx asofed asofe-cli asofe-gtest blocknotify -t /usr/local/bin/ \
     && cp ../zcutil/fetch-params.sh /usr/local/bin/asofe-fetch-params \
     && rm -Rf /usr/src/asofe
 
