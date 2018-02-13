@@ -28,9 +28,8 @@ COPY root /root
 
 VOLUME ["/root"]
 
-COPY docker-entrypoint.sh /usr/local/bin/
-
-ENTRYPOINT ["docker-entrypoint.sh"]
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 8585
 CMD ["/usr/local/bin/asofed", "-printtoconsole"]
