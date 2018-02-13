@@ -25,5 +25,12 @@ RUN cd /usr/src \
 RUN mkdir -p /root/.asofe-params && mkdir /root/.asofe
 
 COPY root /root
+
 VOLUME ["/root"]
-ENTRYPOINT ["/usr/local/bin/asofed", "-printtoconsole"]
+
+COPY docker-entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+EXPOSE 8585
+CMD ["/usr/local/bin/asofed", "-printtoconsole"]
