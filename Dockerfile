@@ -2,14 +2,14 @@ FROM debian:stretch-slim
 MAINTAINER develnk "develnk@gmail.com"
 
 ENV ASOFE_URL="https://github.com/TheLightSide/asofe.git" \
- ASOFE_COMMIT="88ee9402393643841643f24040b32be8dd47467e"
+ ASOFE_COMMIT="390b12e01462c4aba643933b293cb1dcfeace741"
 
 RUN apt-get autoclean && apt-get autoremove && apt-get update \
     && apt-get -qqy install --no-install-recommends build-essential \
     automake ncurses-dev curl libcurl4-openssl-dev libssl-dev libgtest-dev \
     make autoconf automake libtool git apt-utils pkg-config libc6-dev \
     libcurl3-dev libudev-dev m4 g++-multilib unzip python zlib1g-dev \
-    wget ca-certificates pwgen bsdmainutils \
+    wget ca-certificates pwgen bsdmainutils nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 RUN cd /usr/src \
@@ -18,8 +18,7 @@ RUN cd /usr/src \
     && git checkout $ASOFE_COMMIT \
     && ./zcutil/build.sh -j4 \
     && cd /usr/src/asofe/src \
-    && gcc blocknotify.c -o blocknotify \
-    && /usr/bin/install -c asofe-tx asofed asofe-cli asofe-gtest blocknotify -t /usr/local/bin/ \
+    && /usr/bin/install -c asofe-tx asofed asofe-cli asofe-gtest -t /usr/local/bin/ \
     && cp ../zcutil/fetch-params.sh /usr/local/bin/asofe-fetch-params \
     && rm -Rf /usr/src/asofe
 
