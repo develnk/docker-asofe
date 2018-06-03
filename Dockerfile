@@ -2,7 +2,7 @@ FROM debian:stretch-slim
 MAINTAINER develnk "develnk@gmail.com"
 
 ENV ASOFE_URL="https://github.com/TheLightSide/asofe.git" \
- ASOFE_COMMIT="dd539a242d80cfeae1c9cae887e89dc0bdc6d3bc"
+ ASOFE_COMMIT="54a4d90d8f57e5cf2a2fa3b4f868b4fd5518aa60"
 
 RUN apt-get autoclean && apt-get autoremove && apt-get update \
     && apt-get -qqy install --no-install-recommends build-essential \
